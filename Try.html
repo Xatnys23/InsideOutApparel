@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" , initial-scale="1">
+    <title>Customer Registration</title>
+    <link rel="icon" type="image/png" href="images/icons/favicon.ico">
+    <link rel="stylesheet" href="css/LogInSignUp.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/bootstrap.min.css" />
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+    <form onsubmit="return formValidation()">
+
+        <p class="h5 mb-3 text-color-primary font-weight-bold">Products Form</p>
+
+        <div class="row mb-3">
+            <label for="pID" class="col-sm-3 col-form-label">Product ID</label>
+            <div class="col-sm-5">
+                <input type="number" class="form-control" id="pID" name="pID" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="pName" class="col-sm-3 col-form-label">Product Name</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="pName" name="pName" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="desc" class="col-sm-3 col-form-label">Description</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" id="desc" name="desc" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="size" class="col-sm-3 col-form-label">Size</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" pattern="[a-zA-Z0-9\s]+" id="size" name="size" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="price" class="col-sm-3 col-form-label">Price</label>
+            <div class="col-sm-5">
+                <input type="number" class="form-control" step="0.01" min="0.01" pattern="^\d+(\.\d{1,2})?$" id="price" name="price" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="quantity" class="col-sm-3 col-form-label">Quantity</label>
+            <div class="col-sm-5">
+                <input type="number" class="form-control" id="quantity" name="quantity" required>
+            </div>
+        </div>
+
+        <div class="d-grid gap-2 col-3 mx-auto">
+            <button type="Submit" class="btn btn-primary">Save</button>
+        </div>
+        <br>
+    </form>
+
+    <script>
+        function formValidation() {
+            // Get form input values
+            var pID = document.getElementById("pID").value;
+            var pName = document.getElementById("pName").value;
+            var desc = document.getElementById("desc").value;
+            var size = document.getElementById("size").value;
+            var price = document.getElementById("price").value;
+            var quantity = document.getElementById("quantity").value;
+
+            // Product ID validation
+            if (pID == "" || isNaN(pID) || pID <= 0) {
+                alert("Product ID must be an integer greater than 0.");
+                return false;
+            }
+
+            // Product Name validation
+            if (pName == "" || !/^[a-zA-Z]+$/.test(pName) || pName.length < 3) {
+                alert("Product Name must be letters only and at least 3 characters.");
+                return false;
+            }
+
+            // Description validation
+            if (desc == "" || !/^[a-zA-Z]+$/.test(desc) || desc.length < 3) {
+                alert("Description must be letters only and at least 3 characters.");
+                return false;
+            }
+
+            // Size validation
+            if (size == "" || !/^[a-zA-Z0-9\s]+$/.test(size)) {
+                alert("Size must be alphanumeric.");
+                return false;
+            }
+
+            // Price validation
+            if (price == "" || isNaN(price) || price <= 0) {
+                alert("Price must be a double greater than 0.00.");
+                return false;
+            }
+
+            // Quantity validation
+            if (quantity == "" || isNaN(quantity) || quantity <= 0) {
+                alert("Quantity must be an integer greater than 0.");
+                return false;
+            }
+
+            // Success message
+            var productName = pName.charAt(0).toUpperCase() + pName.slice(1);
+            alert(productName + " with " + pID + " has been added to inventory.");
+
+            // Form submitted successfully
+            return true;
+        }
+
+    </script>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+
+</html>
